@@ -1,0 +1,39 @@
+name: 'Send Email With SendGrid'
+author: 'jameeghouri@gmail.com'
+description: 'Using python library, send an email to SendGrid API'
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to trigger the action on
+
+jobs:
+  send_email:
+    name: Send Email
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Set environment variables
+        run: |
+          echo "FROM_EMAIL=jamee.ghouri@10pearls.com" >> $GITHUB_ENV
+          echo "TO_EMAIL=jamee.ghouri@10pearls.com" >> $GITHUB_ENV
+          echo "EMAIL_SUBJECT=Your email subject" >> $GITHUB_ENV
+          echo "EMAIL_BODY=Your email body content" >> $GITHUB_ENV
+          echo "ATTACHMENT_FILE_PATH=testfile" >> $GITHUB_ENV
+          # Add other environment variables here if needed
+
+      - name: Run Python script
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+        run: python send_email_script.py  # Replace with your script filename
