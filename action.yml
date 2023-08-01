@@ -1,8 +1,14 @@
 name: 'Email Generator Action'
 description: 'Email generator action.'
 branding:
-  icon: 'email'
+  icon: 'emailgenerator'
   color: 'blue'
+
+# Add a label for the icon
+labels:
+  - name: 'icon'
+    description: 'The icon for the action in the GitHub Marketplace.'
+    color: 'orange'
 
 inputs:
   from-email:
