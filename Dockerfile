@@ -11,4 +11,4 @@ COPY . /app/
 RUN pip install -r requirements.txt
 
 # Run the Python script when the container starts
-ENTRYPOINT ["send_email_script.py"]
+CMD [ "python", "send_email_script.py"]
