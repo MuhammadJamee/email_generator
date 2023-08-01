@@ -13,11 +13,11 @@ inputs:
     description: 'Description of the input.'
     required: true
     default: 'default value'
-  email_subject:
+  subject:
     description: 'Description of the input.'
     required: true
     default: 'default value'
-  email_body:
+  body:
     description: 'Description of the input.'
     required: true
     default: 'default value'    
@@ -43,9 +43,9 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - --SENDGRID_API_KEY=${{ inputs.sendgrid_api_key }}
-    - --FROM_EMAIL=${{ inputs.from_email }}
-    - --TO_EMAIL=${{ inputs.to_email }}
-    - --EMAIL_SUBJECT=${{ inputs.email_subject }}
-    - --EMAIL_BODY=${{ inputs.email_body }}
-    - --ATTACHMENT_FILE_PATH=${{ inputs.attachment_file_path }}
+    - --sendgrid_api_key=${{ inputs.sendgrid_api_key }}
+    - --from_email=${{ inputs.from_email }}
+    - --to_email=${{ inputs.to_email }}
+    - --subject=${{ inputs.email_subject }}
+    - --body=${{ inputs.email_body }}
+    - --attachment_file_path=${{ inputs.attachment_file_path }}
