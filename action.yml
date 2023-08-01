@@ -1,7 +1,7 @@
 name: 'Email Generator Action'
 description: 'Email generator action.'
 branding:
-  icon: 'package.svg'
+  icon: 'email'
   color: 'blue'
 
 inputs:
@@ -29,16 +29,7 @@ inputs:
     description: 'Description of the input.'
     required: true
     default: 'default value'    
-
-outputs:
-  output_name:
-    description: 'Description of the output.'
-    # Add more outputs as needed
-
-runs:
-  using: 'docker'
-  image: 'Dockerfile' # Path to the Dockerfile for your action
-
+    
 author:
   name: 'Muhammad Jamee Ghouri'
   email: 'jameeghouri@gmail.com'
@@ -48,4 +39,6 @@ repository:
   type: 'git'
   url: 'https://github.com/MuhammadJamee/email_generator'
 
-# Add other optional fields as needed, such as `keywords`, `categories`, etc.
+runs:
+  using: 'python'
+  main: 'send_email_script.py'
