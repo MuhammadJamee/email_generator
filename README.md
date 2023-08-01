@@ -23,6 +23,16 @@ python send_email_script.py \
     --api-key YOUR_SENDGRID_API_KEY
 ```
 
+      - name: 'Sending Email with SendGrid'
+        uses: MuhammadJamee/email_generator@v1
+        with:
+          sendgrid-api-key: ${{ secrets.SENDGRID_API_KEY }}
+          subject: 'New Release ${{ github.repository }}:${{ github.ref_name }}'
+          from-email: verified-email@example.com
+          to-email: jameeghouri@gmail.com
+          body: 'Report is attached'
+          attachment-file-path: 'reports.zip' 
+
 Please note that this script requires a compatible environment with the correct Python version and dependencies installed. It is recommended to use a virtual environment to manage dependencies effectively.
 
 Enjoy sending emails effortlessly with SendGrid using this Python workflow! If you encounter any issues or errors, refer to the troubleshooting section or check the compatibility of the script with your system's architecture and operating system. Happy emailing!
