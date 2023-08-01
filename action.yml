@@ -40,5 +40,12 @@ repository:
   url: 'https://github.com/MuhammadJamee/email_generator'
 
 runs:
-  using: 'python'
-  main: 'send_email_script.py'
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - --SENDGRID_API_KEY=${{ inputs.sendgrid_api_key }}
+    - --FROM_EMAIL=${{ inputs.from_email }}
+    - --TO_EMAIL=${{ inputs.to_email }}
+    - --EMAIL_SUBJECT=${{ inputs.email_subject }}
+    - --EMAIL_BODY=${{ inputs.email_body }}
+    - --ATTACHMENT_FILE_PATH=${{ inputs.attachment_file_path }}
