@@ -6,29 +6,17 @@ branding:
 
 inputs:
   from-email:
-    description: 'Description of the input.'
     required: true
-    default: 'default value'
   to-email:
-    description: 'Description of the input.'
     required: true
-    default: 'default value'
   subject:
-    description: 'Description of the input.'
     required: true
-    default: 'default value'
   body:
-    description: 'Description of the input.'
     required: true
-    default: 'default value'    
   attachment-file-path:
-    description: 'Description of the input.'
     required: true
-    default: 'default value'
   sendgrid-api-key:
-    description: 'Description of the input.'
     required: true
-    default: 'default value'    
     
 author:
   name: 'Muhammad Jamee Ghouri'
