@@ -5,11 +5,11 @@ branding:
   color: 'blue'
 
 inputs:
-  from_email:
+  from-email:
     description: 'Description of the input.'
     required: true
     default: 'default value'
-  to_email:
+  to-email:
     description: 'Description of the input.'
     required: true
     default: 'default value'
@@ -21,11 +21,11 @@ inputs:
     description: 'Description of the input.'
     required: true
     default: 'default value'    
-  attachment_file_path:
+  attachment-file-path:
     description: 'Description of the input.'
     required: true
     default: 'default value'
-  sendgrid_api_key:
+  sendgrid-api-key:
     description: 'Description of the input.'
     required: true
     default: 'default value'    
@@ -43,9 +43,9 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - --sendgrid_api_key=${{ inputs.sendgrid_api_key }}
-    - --from_email=${{ inputs.from_email }}
-    - --to_email=${{ inputs.to_email }}
-    - --subject=${{ inputs.email_subject }}
-    - --body=${{ inputs.email_body }}
-    - --attachment_file_path=${{ inputs.attachment_file_path }}
+    - --sendgrid-api-key=${{ inputs.sendgrid-api-key }}
+    - --from-email=${{ inputs.from-email }}
+    - --to-email=${{ inputs.to-email }}
+    - --subject=${{ inputs.subject }}
+    - --body=${{ inputs.body }}
+    - --attachment-file-path=${{ inputs.attachment-file-path }}
