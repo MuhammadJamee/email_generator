@@ -5,7 +5,7 @@ FROM python:3.9
 WORKDIR /app
 
 # Copy the Python script into the container
-COPY . .
+COPY . /app/
 
 # Install required dependencies
 RUN pip install -r requirements.txt
