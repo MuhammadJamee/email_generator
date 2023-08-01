@@ -1,39 +1,44 @@
-name: 'Send Email With SendGrid'
-author: 'jameeghouri@gmail.com'
-description: 'Using python library, send an email to SendGrid API'
+name: 'Email Generator Action'
+description: 'Email generator action.'
+branding:
+  icon: 'email'
+  color: 'blue'
 
-on:
-  push:
-    branches:
-      - main  # Change this to the branch you want to trigger the action on
+inputs:
+  from_email:
+    description: 'Description of the input.'
+    required: true
+    default: 'default value'
+  to_email:
+    description: 'Description of the input.'
+    required: true
+    default: 'default value'
+  email_subject:
+    description: 'Description of the input.'
+    required: true
+    default: 'default value'
+  email_body:
+    description: 'Description of the input.'
+    required: true
+    default: 'default value'    
+  attachment_file_path:
+    description: 'Description of the input.'
+    required: true
+    default: 'default value'
+  sendgrid_api_key:
+    description: 'Description of the input.'
+    required: true
+    default: 'default value'    
+    
+author:
+  name: 'Muhammad Jamee Ghouri'
+  email: 'jameeghouri@gmail.com'
+  website: 'https://jamee.com'
 
-jobs:
-  send_email:
-    name: Send Email
-    runs-on: ubuntu-latest
+repository:
+  type: 'git'
+  url: 'https://github.com/MuhammadJamee/email_generator'
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Set environment variables
-        run: |
-          echo "FROM_EMAIL=jamee.ghouri@10pearls.com" >> $GITHUB_ENV
-          echo "TO_EMAIL=jamee.ghouri@10pearls.com" >> $GITHUB_ENV
-          echo "EMAIL_SUBJECT=Your email subject" >> $GITHUB_ENV
-          echo "EMAIL_BODY=Your email body content" >> $GITHUB_ENV
-          echo "ATTACHMENT_FILE_PATH=testfile" >> $GITHUB_ENV
-          # Add other environment variables here if needed
-
-      - name: Run Python script
-        env:
-          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-        run: python send_email_script.py  # Replace with your script filename
+runs:
+  using: 'python'
+  main: 'send_email_script.py'
