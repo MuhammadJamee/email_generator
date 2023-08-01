@@ -3,22 +3,14 @@ import base64
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition
 
-# Get the environment variables for email content
-from_email = os.environ.get('FROM_EMAIL')
-to_email = os.environ.get('TO_EMAIL')
-subject = os.environ.get('SUBJECT')
-body = os.environ.get('BODY')
+# Read environment variables for email details
+from_email = os.environ.get("FROM_EMAIL")
+to_email = os.environ.get("TO_EMAIL")
+subject = os.environ.get("EMAIL_SUBJECT")
+body = os.environ.get("EMAIL_BODY")
 
-# Check if any of the environment variables are not set
-if not from_email or not to_email or not subject or not body:
-    raise ValueError("One or more required environment variables are not set.")
-
-# Get the SendGrid API key from the environment variable
-sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-
-# Check if the API key is available
-if not sendgrid_api_key:
-    raise ValueError("SendGrid API key is not set. Please set the environment variable SENDGRID_API_KEY.")
+# Set your SendGrid API key using an environment variable
+sendgrid_api_key = os.environ.get("SENDGRID_API_KEY")
 
 # Create the SendGrid client
 sg = SendGridAPIClient(api_key=sendgrid_api_key)
@@ -32,7 +24,7 @@ message = Mail(
 )
 
 # Add attachments if needed
-file_path = "testfile"
+file_path = os.environ.get("ATTACHMENT_FILE_PATH")
 with open(file_path, "rb") as file:
     file_data = file.read()
     file_name = os.path.basename(file_path)
