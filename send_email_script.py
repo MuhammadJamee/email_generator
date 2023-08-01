@@ -1,7 +1,9 @@
 import argparse
 import base64
+import os  # Add this line to import the 'os' module
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition
+
 
 def send_email(from_email, to_email, subject, body, sendgrid_api_key, attachment_file_path):
     # Create the SendGrid client
@@ -39,6 +41,7 @@ def send_email(from_email, to_email, subject, body, sendgrid_api_key, attachment
     except Exception as e:
         print(f"Error sending email: {str(e)}")
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Send an email with attachment using SendGrid.")
     parser.add_argument("--from-email", required=True, help="Sender's email address")
@@ -47,9 +50,9 @@ if __name__ == "__main__":
     parser.add_argument("--body", required=True, help="Email body content")
     parser.add_argument("--sendgrid-api-key", required=True, help="SendGrid API key")
     parser.add_argument("--attachment-file-path", required=True, help="Path to the attachment file")
-    
+
     args = parser.parse_args()
-    
+
     send_email(
         args.from_email,
         args.to_email,
