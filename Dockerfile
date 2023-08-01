@@ -1,14 +1,13 @@
-# Use the official Python image as the base image
-FROM python:3.9
+FROM python:3.10-alpine
 
-# Set the working directory
-WORKDIR /app
+LABEL author="M Jamee Ghouri <jameeghouri@gmail.com>"
 
-# Copy the Python script into the container
-COPY . /app/
+ENV PYTHONUNBUFFERED=1
 
-# Install required dependencies
+RUN pip install -U pip
+
+COPY . .
+
 RUN pip install -r requirements.txt
 
-# Run the Python script when the container starts
-CMD [ "python", "send_email_script.py"]
+ENTRYPOINT ["/send_email_script.py"]
