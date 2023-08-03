@@ -14,6 +14,7 @@ Key Features:
 To use the workflow, ensure that you have the necessary dependencies installed by checking the `requirements.txt` file. Make sure to set up your SendGrid API key and replace `YOUR_SENDGRID_API_KEY` with your actual API key in the command-line arguments.
 
 Example Usage:
+
 ```bash
 python send_email_script.py \
     --to recipient@example.com \
@@ -22,16 +23,43 @@ python send_email_script.py \
     --from-email sender@example.com \
     --api-key YOUR_SENDGRID_API_KEY
 ```
-
+```yaml
       - name: 'Sending Email with SendGrid'
         uses: MuhammadJamee/email_generator@v1
         with:
           sendgrid-api-key: ${{ secrets.SENDGRID_API_KEY }}
-          subject: 'New Release ${{ github.repository }}:${{ github.ref_name }}'
+          subject: 'Example Build #${{github.run_number}}'
           from-email: verified-email@example.com
-          to-email: jameeghouri@gmail.com
-          body: 'Report is attached'
-          attachment-file-path: 'reports.zip' 
+          to-email: to-email@example.com
+          body: 'Example is attached'
+          attachment-file-path: 'example.zip' 
+```
+Example Usage For Multiple Recipients:         
+```yaml
+sending-email:
+  runs-on: ubuntu-latest
+  timeout-minutes: 1
+  needs: build
+  strategy:
+    matrix:
+      to-emails:
+        - john.doe@example.com
+        - to-email@example.com
+        - example@example.com
+      
+    - name: Compress report folder
+      run: zip -r example.zip ./example
+            
+    - name: 'Sending Email with SendGrid'
+      uses: MuhammadJamee/email_generator@v1
+      with:
+        sendgrid-api-key: ${{ secrets.SENDGRID_API_KEY }}
+        subject: 'Example Build #${{github.run_number}}'
+        from-email: verified-email@example.com
+        to-email: ${{ matrix.to-emails }}
+        body: 'Example is attached'
+        attachment-file-path: 'example.zip'
+```
 
 Please note that this script requires a compatible environment with the correct Python version and dependencies installed. It is recommended to use a virtual environment to manage dependencies effectively.
 
